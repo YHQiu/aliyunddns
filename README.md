@@ -52,7 +52,7 @@ python app.py
 
 作为系统服务（Linux）
 ```text
-创建服务文件 /etc/systemd/system/aliyun-ddns.service：
+创建服务文件 /etc/systemd/system/aliyun-ddns.service
 ```
 
 ```ini
@@ -66,16 +66,36 @@ ExecStart=/usr/bin/python3 /path/to/app.py
 WorkingDirectory=/path/to/project
 Restart=always
 User=root
-```
 
 [Install]
 WantedBy=multi-user.target
+```
+
 启用服务：
 
 ```bash
 sudo systemctl daemon-reload
 sudo systemctl enable aliyun-ddns
 sudo systemctl start aliyun-ddns
+```
+
+服务运行成功示例
+```text
+(base) root@ta:/opt/script/aliyunddns# systemctl status aliyun-ddns
+● aliyun-ddns.service - Aliyun DDNS Service
+     Loaded: loaded (/etc/systemd/system/aliyun-ddns.service; enabled; vendor preset: enabled)
+     Active: active (running) since Fri 2025-04-11 15:25:05 CST; 7s ago
+   Main PID: 1762716 (python)
+      Tasks: 1 (limit: 618460)
+     Memory: 24.6M
+        CPU: 247ms
+     CGroup: /system.slice/aliyun-ddns.service
+             └─1762716 python /opt/script/aliyunddns/app.py
+
+Apr 11 15:25:05 ta systemd[1]: Started Aliyun DDNS Service.
+Apr 11 15:25:05 ta python[1762716]: 2025-04-11 15:25:05,986 - INFO - 阿里云DDNS服务启动
+Apr 11 15:25:07 ta python[1762716]: 2025-04-11 15:25:07,317 - INFO - 获取到本机公网IP地址是：113.90..
+
 ```
 
 开源协议
@@ -128,7 +148,7 @@ dns_update_min_interval: 300
 
 # 日志配置
 ```text
-log_file: "/var/log/aliyun_ddns.log"
+log_file: "/var/log/aliyun_ddns/aliyun_ddns.log"
 ```
 LICENSE
 

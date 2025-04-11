@@ -1,0 +1,45 @@
+# 阿里云DDNS配置
+
+# AK配置列表
+ak_configs:
+  - access_key_id: "AK1"
+    access_key_secret: "SK1"
+    region: "cn-hangzhou"  # 可选，默认为cn-hangzhou
+    domains:
+      - domain: "example1.com"
+        rr: "www"
+        type: "A"
+      - domain: "example1.com"
+        rr: "@"
+        type: "A"
+
+  - access_key_id: "AK2"
+    access_key_secret: "SK2"
+    domains:
+      - domain: "example2.com"
+        rr: "blog"
+        type: "A"
+      - domain: "example2.com"
+        rr: "mail"
+        type: "A"
+
+# IP检测间隔(秒)
+ip_check_interval: 15
+
+# DNS更新最小间隔(秒)
+dns_update_min_interval: 300
+
+# 存储当前IP的文件路径
+ip_cache_file: "/tmp/aliyun_ddns_ip_cache.txt"
+
+# 存储最后更新时间的文件路径
+last_update_file: "/tmp/aliyun_ddns_last_update.txt"
+
+# 获取公网IP的服务
+ip_check_services:
+  - "https://api.ipify.org?format=json"
+  - "http://ip-api.com/json"
+  - "https://ipinfo.io/json"
+
+# 日志文件路径
+log_file: "/var/log/aliyun_ddns.log"
